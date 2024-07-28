@@ -1,0 +1,46 @@
+def is_leap_year(year):
+    return (year % 4 == 0 and year % 100 != 0) or (year % 400 == 0)
+
+def days_in_month(month, year):
+    months = {
+        'January': 31,
+        'February': 28,  
+        'March': 31,
+        'April': 30,
+        'May': 31,
+        'June': 30,
+        'July': 31,
+        'August': 31,
+        'September': 30,
+        'October': 31,
+        'November': 30,
+        'December': 31
+    }
+    
+    if month not in months:
+        return None  
+    
+    days = months[month]
+    
+    if month == 'February' and is_leap_year(year):
+        days = 29
+    
+    return days
+
+def main():
+    month = input("Enter the month name (e.g., January, February): ").capitalize()
+    
+    try:
+        year = int(input("Enter the year: "))
+    except ValueError:
+        print("Invalid year input. Please enter a valid number.")
+        return
+    days = days_in_month(month, year)
+    
+    if days is None:
+        print("Invalid month name. Please enter a valid month.")
+    else:
+        print(f"The number of days in {month} {year} is {days}.")
+
+if __name__ == "__main__":
+    main()
